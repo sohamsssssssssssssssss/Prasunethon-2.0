@@ -1,0 +1,9 @@
+# Cadence dependencies (install into .venv:  python3 -m venv .venv && .venv/bin/pip install -r requirements.txt)
+pandas>=2.0
+numpy>=1.24
+scipy>=1.11        # bandpass filtering (sosfiltfilt)
+PyWavelets>=1.4    # wavelet denoising
+matplotlib>=3.8    # QC plots (notebooks/preprocessing_qc/)
+pytest>=8.0
+torch>=2.0
+scikit-learn>=1.3

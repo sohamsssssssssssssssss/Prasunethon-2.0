@@ -1,0 +1,26 @@
+# Raw data (PTB-XL goes here, downloaded from PhysioNet)
+data/
+
+# Prompt log — kept out of version control
+PROMPT_LOG.md
+
+# Python
+*.pyc
+__pycache__/
+*.egg-info/
+.pytest_cache/
+
+# Environment
+.env
+.env.*
+.venv/
+venv/
+
+# Model checkpoints
+checkpoints/
+
+# Notebook cruft
+.ipynb_checkpoints/
+
+# OS
+.DS_Store
