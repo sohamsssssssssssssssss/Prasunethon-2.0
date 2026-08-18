@@ -38,6 +38,7 @@ CHECKPOINT_DIR = REPO / "checkpoints"
 CHECKPOINT_DIR.mkdir(exist_ok=True)
 BEST_MODEL_PATH = CHECKPOINT_DIR / "best_model.pt"
 HISTORY_PATH = CHECKPOINT_DIR / "training_history.json"
+LAST_STATE_PATH = CHECKPOINT_DIR / "last_training_state.pt"
 
 
 def get_device() -> torch.device:
@@ -125,17 +126,29 @@ def main():
     optimizer = torch.optim.AdamW(model.parameters(), lr=LR,
                                   weight_decay=WEIGHT_DECAY)
 
-    # Training loop
+    # Training loop.  Persist the complete state after every epoch so an
+    # externally interrupted process can resume without repeating work.
     best_val_loss = float("inf")
     best_epoch = 0
     patience_counter = 0
     history = []
+    start_epoch = 1
+    if LAST_STATE_PATH.exists():
+        state = torch.load(LAST_STATE_PATH, map_location=device)
+        model.load_state_dict(state["model_state_dict"])
+        optimizer.load_state_dict(state["optimizer_state_dict"])
+        best_val_loss = state["best_val_loss"]
+        best_epoch = state["best_epoch"]
+        patience_counter = state["patience_counter"]
+        history = state["history"]
+        start_epoch = state["epoch"] + 1
+        print(f"Resuming from completed epoch {state['epoch']}", flush=True)
 
     print(f"\n{'Epoch':>5}  {'Train Loss':>12}  {'Val Loss':>12}  {'Time':>7}")
     print("-" * 45)
 
     t_start = time.time()
-    for epoch in range(1, MAX_EPOCHS + 1):
+    for epoch in range(start_epoch, MAX_EPOCHS + 1):
         t_ep = time.time()
         train_loss = train_one_epoch(model, train_loader, criterion, optimizer, device)
         val_loss = validate(model, val_loader, criterion, device)
@@ -150,6 +163,7 @@ def main():
             torch.save({
                 "epoch": epoch,
                 "model_state_dict": model.state_dict(),
+                "optimizer_state_dict": optimizer.state_dict(),
                 "val_loss": val_loss,
                 "pos_weight": pos_weight.cpu(),
             }, BEST_MODEL_PATH)
@@ -164,6 +178,15 @@ def main():
         # Save history after every epoch
         with open(HISTORY_PATH, "w") as f:
             json.dump(history, f, indent=2)
+        torch.save({
+            "epoch": epoch,
+            "model_state_dict": model.state_dict(),
+            "optimizer_state_dict": optimizer.state_dict(),
+            "best_val_loss": best_val_loss,
+            "best_epoch": best_epoch,
+            "patience_counter": patience_counter,
+            "history": history,
+        }, LAST_STATE_PATH)
 
         if patience_counter >= PATIENCE:
             print(f"\nEarly stopping (no improvement for {PATIENCE} epochs)")

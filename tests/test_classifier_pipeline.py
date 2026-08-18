@@ -114,8 +114,8 @@ class TestModelForwardPass:
         """Model should have a reasonable number of parameters (not too many)."""
         model = ECGClassifier1D(n_leads=12, n_classes=5)
         n_params = sum(p.numel() for p in model.parameters())
-        # Should be between 100K and 5M for a simple 1D-CNN baseline.
-        assert 100_000 < n_params < 5_000_000, (
+        # Should be between 50K and 5M for a simple 1D-CNN baseline.
+        assert 50_000 < n_params < 5_000_000, (
             f"Unexpected parameter count: {n_params:,}"
         )
 

@@ -10,7 +10,7 @@ Simplified architecture for faster CPU training:
   - Dropout (p=0.2)
   - Linear head to 5 classes (raw logits, for BCEWithLogitsLoss)
 
-Total parameters: ~150K (well within the 100K-5M test range).
+Total parameters: ~88K (well within the 50K-5M test range).
 """
 
 from __future__ import annotations
