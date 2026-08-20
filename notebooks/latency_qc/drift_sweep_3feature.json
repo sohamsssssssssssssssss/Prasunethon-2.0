@@ -1,0 +1,103 @@
+{
+  "description": "Phase 5d \u2014 3-feature drift threshold sweep (post-ablation, QRS width removed). 2,109 patients, 2,926 follow-ups. Features: RR interval, heart rate, R-peak amplitude (2 independent signals).",
+  "n_patients": 2109,
+  "n_followups": 2926,
+  "n_superclass_changed": 1417,
+  "n_superclass_same": 1509,
+  "base_rate_changed": 0.48427887901572114,
+  "features": [
+    "mean_rr_ms",
+    "heart_rate_bpm",
+    "mean_r_amplitude_mv"
+  ],
+  "sweep": [
+    {
+      "z_threshold": 0.25,
+      "sensitivity": 0.716,
+      "specificity": 0.411,
+      "false_alarm_rate": 0.589,
+      "ppv": 0.533,
+      "accuracy": 0.559,
+      "n_flagged": 1904,
+      "changed_flagged": 1015,
+      "same_flagged": 889
+    },
+    {
+      "z_threshold": 0.5,
+      "sensitivity": 0.425,
+      "specificity": 0.671,
+      "false_alarm_rate": 0.329,
+      "ppv": 0.548,
+      "accuracy": 0.552,
+      "n_flagged": 1099,
+      "changed_flagged": 602,
+      "same_flagged": 497
+    },
+    {
+      "z_threshold": 0.75,
+      "sensitivity": 0.241,
+      "specificity": 0.821,
+      "false_alarm_rate": 0.179,
+      "ppv": 0.559,
+      "accuracy": 0.54,
+      "n_flagged": 612,
+      "changed_flagged": 342,
+      "same_flagged": 270
+    },
+    {
+      "z_threshold": 1.0,
+      "sensitivity": 0.153,
+      "specificity": 0.893,
+      "false_alarm_rate": 0.107,
+      "ppv": 0.573,
+      "accuracy": 0.535,
+      "n_flagged": 379,
+      "changed_flagged": 217,
+      "same_flagged": 162
+    },
+    {
+      "z_threshold": 1.5,
+      "sensitivity": 0.094,
+      "specificity": 0.935,
+      "false_alarm_rate": 0.065,
+      "ppv": 0.576,
+      "accuracy": 0.528,
+      "n_flagged": 231,
+      "changed_flagged": 133,
+      "same_flagged": 98
+    },
+    {
+      "z_threshold": 2.0,
+      "sensitivity": 0.064,
+      "specificity": 0.958,
+      "false_alarm_rate": 0.042,
+      "ppv": 0.587,
+      "accuracy": 0.525,
+      "n_flagged": 155,
+      "changed_flagged": 91,
+      "same_flagged": 64
+    },
+    {
+      "z_threshold": 2.5,
+      "sensitivity": 0.051,
+      "specificity": 0.968,
+      "false_alarm_rate": 0.032,
+      "ppv": 0.595,
+      "accuracy": 0.524,
+      "n_flagged": 121,
+      "changed_flagged": 72,
+      "same_flagged": 49
+    },
+    {
+      "z_threshold": 3.0,
+      "sensitivity": 0.042,
+      "specificity": 0.972,
+      "false_alarm_rate": 0.028,
+      "ppv": 0.588,
+      "accuracy": 0.522,
+      "n_flagged": 102,
+      "changed_flagged": 60,
+      "same_flagged": 42
+    }
+  ]
+}

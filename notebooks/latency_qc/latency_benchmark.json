@@ -1,0 +1,62 @@
+{
+  "hardware": {
+    "cpu_model": "Apple M5",
+    "n_physical_cores": 10,
+    "n_logical_cores": 10,
+    "ram_gb": 16.0,
+    "os": "Darwin 25.5.0",
+    "python": "3.14.3",
+    "torch_version": "2.13.0",
+    "has_mps": true,
+    "has_cuda": false
+  },
+  "single_recording": {
+    "total": {
+      "mean_ms": 3.776425450341776,
+      "median_ms": 3.7378960114438087,
+      "p95_ms": 4.1853330010781065,
+      "p99_ms": 4.346883423859253,
+      "min_ms": 3.4707500017248094,
+      "max_ms": 4.557166976155713,
+      "std_ms": 0.20027880252813166,
+      "n": 200
+    },
+    "preprocessing": {
+      "mean_ms": 3.041780031780945,
+      "median_ms": 3.0183125054463744,
+      "p95_ms": 3.2482211419846863,
+      "p99_ms": 3.395995839964598,
+      "n": 200
+    },
+    "inference": {
+      "mean_ms": 0.722222462791251,
+      "median_ms": 0.6624584930250421,
+      "p95_ms": 1.0494729329366235,
+      "p99_ms": 1.2188158361823298,
+      "min_ms": 0.5839579971507192,
+      "max_ms": 1.3590839807875454,
+      "n": 200
+    }
+  },
+  "streaming": {
+    "chunk_ms": 100.0,
+    "mean_ms": 0.448727554504876,
+    "median_ms": 0.44183350109960884,
+    "p95_ms": 0.7031291985185816,
+    "p99_ms": 0.9382499850471504,
+    "min_ms": 0.19158300710842013,
+    "max_ms": 2.1462500153575093,
+    "n": 10000
+  },
+  "model": {
+    "checkpoint": "/Users/soham/Desktop/cadence/checkpoints/best_model.pt",
+    "temperature": 1.0428889989852905,
+    "class_thresholds": {
+      "NORM": 0.75,
+      "MI": 0.75,
+      "STTC": 0.75,
+      "CD": 0.75,
+      "HYP": 0.75
+    }
+  }
+}

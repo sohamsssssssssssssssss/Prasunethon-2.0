@@ -14,10 +14,19 @@ Full product requirements: see the PRD (linked from the project brief / prompt l
 
 ## Status
 
-- **Phase 1 (current):** repo scaffold + PTB-XL data verification — proving the
-  patient-independent split is leak-free before any model code is written.
-- **Phase 2 (planned):** bandpass filtering + wavelet denoising.
-- **Phase 3+ (planned):** models and evaluation.
+All phases through 8b are complete and tested.
+
+- **Phase 1:** ✅ Repo scaffold + PTB-XL data verification — leak-free patient-independent split confirmed.
+- **Phase 2:** ✅ Bandpass filtering (0.5–40 Hz) + wavelet denoising (db4, level 4) pipeline.
+- **Phase 3:** ✅ Multi-label classifier trained (88K-param 1D-CNN), evaluated on held-out test set (macro-F1 0.723).
+- **Phase 4:** ✅ Temperature calibration + confidence-reject policy (92.1% accuracy on kept decisions, 76.3% coverage).
+- **Phase 5:** ✅ Personal baseline drift layer PoC — benchmarked but not validated (sensitivity 15.3%, specificity 89.3% at |z|>1.0). QRS width tested and dropped after ablation.
+- **Phase 6:** ✅ Per-beat inference latency benchmark (3.78ms mean end-to-end on CPU, Apple M5).
+- **Phase 7:** ✅ Streamlit demo dashboard with live inference, static fallback, and interactive tradeoff sliders.
+- **Phase 8:** ✅ Interactive risk-threshold sliders using precomputed validated curves.
+- **Phase 9:** ✅ Honest-claims audit against PRD §9 — 3 minor flags found, none are language violations.
+
+**Known limitations:** drift PoC sensitivity is weak (15.3%), QRS width extraction was unvalidated and dropped, latency is software-simulated streaming only (not real hardware).
 
 ## Layout
 
